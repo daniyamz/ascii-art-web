@@ -1,25 +1,26 @@
 package server
 
 import (
-	"fmt"
 	"net/http"
+	"text/template"
 )
 
-// create a handle
-func homeHandler(w http.ResponseWriter, r *http.Request) {
-
-	// w is for send data back and r is for reading incoming data
-	fmt.Fprint(w, "Welcome to my Go server!")
+type ErrorPage struct {
+	errcode string
+	errmsg  string
 }
 
-func main() {
-	//create a router
-	mux := http.NewServeMux() 
+var Err = *ErrorPage
 
-	// the router is associated with the a handle
-	mux.HandleFunc("/", homeHandler)
-
-	// using router the engine is start on port 8080
-	fmt.Println("Server is running on http://localhost:8080")
-	http.ListenAndServe(":8080", mux)
+func errHandler(w http.ResponseWriter, r *http.Request) {
+	errTmp := template.Must(template.ParseFiles("template/error.html"))
+	errTmp.Execute(w, Err)
+}
+func MainHandler(w http.ResponseWriter, r *http.Request) {
+	if r.URL.Path != "/" {
+		err := ErrorPage{errcode: "404", errmsg: "PAGE NOT FOUND"}
+		w.WriteHeader(http.StatusNotFound)
+		errHandler(w, r, &Err)
+		return
+	}
 }
