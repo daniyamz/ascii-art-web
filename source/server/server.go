@@ -30,6 +30,15 @@ func MainHandler(w http.ResponseWriter, r *http.Request) {
 		errHandler(w, r, &err)
 		return
 	}
+	//validating the parsing of the main page
+	main, err := template.ParseFiles("template/index.html")
+	if err != nil {
+		err := ErrorPageMsg{errorCode: "500", errorMsg: "INTERNAL SERVER ERROR"}
+		errHandler(w, r, &err)
+		return
+	}
+	mainTmp := template.Must(main, nil)
+	mainTmp.Execute(w, nil)
 }
 
 // function to hand index.html in the server.
