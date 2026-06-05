@@ -3,6 +3,7 @@ package server
 import (
 	"html/template"
 	"net/http"
+	"strings"
 )
 
 type ErrorPageMsg struct {
@@ -11,9 +12,9 @@ type ErrorPageMsg struct {
 }
 
 type resPageData struct {
-	input  string
-	banner string
-	res    string
+	str  string
+	font string
+	res  string
 }
 
 func errHandler(w http.ResponseWriter, r *http.Request, err *ErrorPageMsg) {
@@ -48,8 +49,9 @@ func MainHandler(w http.ResponseWriter, r *http.Request) {
 	mainTmp.Execute(w, nil)
 }
 
-// validating respagagedata
+// function for reshandler
 func ResHandler(w http.ResponseWriter, r *http.Request) {
+	// checking for parsing of the form
 	err := r.ParseForm()
 	if err != nil {
 		err := ErrorPageMsg{errorCode: "500", errorMsg: "INTERNAL SERVER ERROR"}
@@ -57,6 +59,26 @@ func ResHandler(w http.ResponseWriter, r *http.Request) {
 		errHandler(w, r, &err)
 		return
 	}
+	str := r.PostFormValue("input-txt")
+	validatestr := strings.ReplaceAll(str, "\r\n", "")
+
+	for _, letts := range validatestr {
+		if letts < 32 || letts > 126 {
+			err := ErrorPageMsg{errorCode: "400", errorMsg: "INVALID INPUT"}
+			w.WriteHeader(http.StatusNotAcceptable)
+			errHandler(w, r, &err)
+			return
+		}
+	}
+	font := r.PostFormValue("banners")
+
+	if font != "standard" && font != "shadow" && font != "thinkertoy" {
+		err := ErrorPageMsg{errorCode: "404", errorMsg: "BANNER NOT FOUND"}
+		w.WriteHeader(http.StatusNotFound)
+		errHandler(w, r, &err)
+		return
+	}
+	
 }
 
 // function to hand index.html in the server.

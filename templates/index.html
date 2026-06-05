@@ -4,23 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ascii Display</title>
-    <h1>Ascii-art web</h1>
+    <h1><i>Ascii-art web</i></h1>
 </head>
 <body>
-    <form>
+    <form a="/ascii-art">
         <div>
             <label for="input-text" class="form-lable">Convert text to ascii-art</label><br><br>
-            <textarea type="text"  name="Enter-text" class="form-control" id="input-text" required>Enter text</textarea>
+            <textarea type="text"  name="Enter-text" class="form-control" id="input-text" style="height: 200px; width: 700px; text-align: left; font-size: 30px;" placeholder="Enter text" required></textarea>
         </div>
         
         <div>
             <select class="form-select" name="banner">
-                <option value="standard">standard</option>
+                <option value="standard" style="border-radius: 100px;">standard</option>
                 <option value="shadow">shadow</option>
                 <option value="thinkertoy">thinkertoy</option>
             </select>
-            <button class="btn">Go</button>
+            <button type="submit" style="font-family: Pacifico, 'Ubutun Medium', 'Ubutun',sans-serif,'Times New Rome';">Go</button>
         </div>
     </form>
+    <div>
+        <pre name="">{{.ascii}}</pre>
+    </div>
 </body>
 </html>
