@@ -7,7 +7,7 @@
     <h1><i>Ascii-art web</i></h1>
 </head>
 <body>
-    <form a="/ascii-art">
+    <form action="/ascii-art" method="POST">
         <div>
             <label for="input-text" class="form-lable">Convert text to ascii-art</label><br><br>
             <textarea type="text"  name="Enter-text" class="form-control" id="input-text" style="height: 200px; width: 700px; text-align: left; font-size: 30px;" placeholder="Enter text" required></textarea>
@@ -15,7 +15,7 @@
         
         <div>
             <select class="form-select" name="banner">
-                <option value="standard" style="border-radius: 100px;">standard</option>
+                <option value="standard">standard</option>
                 <option value="shadow">shadow</option>
                 <option value="thinkertoy">thinkertoy</option>
             </select>
@@ -23,7 +23,7 @@
         </div>
     </form>
     <div>
-        <pre name="">{{.ascii}}</pre>
+        <pre>{{ .ascii }}</pre>
     </div>
 </body>
 </html>

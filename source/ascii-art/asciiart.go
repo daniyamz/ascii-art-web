@@ -28,7 +28,7 @@ func GetBanner(input string, num int) (string, error) {
 	return text, nil
 }
 func GenerateArt(input, filename string) (string, error) {
-	banner := "\banner" + filename + ".txt"
+	banner := "banners/" + filename + ".txt"
 	var result strings.Builder
 	arg := strings.Split(input, "\n")
 	for _, word := range arg {
