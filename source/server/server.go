@@ -88,7 +88,7 @@ func ResHandler(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusInternalServerError)
 		errHandler(w, r, &err)
 	}
-	resTmp := template.Must(template.ParseFiles("templates/index.html"))
+	resTmp := template.Must(template.ParseFiles("templates/asciiart.html"))
 	output := resPageData{str: input, font: banner, res: ascii}
 	resTmp.Execute(w, output)
 

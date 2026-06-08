@@ -9,9 +9,13 @@
     <div>
         <form>
             <label for="txt-input" class="font-text">Your text</label>
-            <textarea type="text" name="text-input" id="txt-input"></textarea>
+            <textarea type="text" name="text-input" id="txt-input">{{ .str}}</textarea>
             <label for="ascii-font" class="form-lable">Ascii Font</label>
+            <t type="text" name="ascii-font" id="ascii-font" readonly> {{ .font}}</input>
         </form>
+        <div>
+            <pre>{{.res}}</pre>
+        </div>
     </div>
 </body>
 </html>
