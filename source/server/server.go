@@ -7,19 +7,23 @@ import (
 	"strings"
 )
 
+//struct that holds the error data
+
 type ErrorPageMsg struct {
 	errorCode string
 	errorMsg  string
 }
 
+// struct for the result data
 type resPageData struct {
 	str  string
 	font string
 	res  string
 }
 
+// func that render the error page
 func errHandler(w http.ResponseWriter, r *http.Request, err *ErrorPageMsg) {
-	errTmp := template.Must(template.ParseFiles("templates/index.html"))
+	errTmp := template.Must(template.ParseFiles("templates/error.html"))
 	errTmp.Execute(w, err)
 }
 
@@ -32,7 +36,7 @@ func MainHandler(w http.ResponseWriter, r *http.Request) {
 		errHandler(w, r, &err)
 		return
 	}
-	if r.Method != "Get" {
+	if r.Method != "GET" {
 		err := ErrorPageMsg{errorCode: "405", errorMsg: "METHOD NOT ALLOWED"}
 		w.WriteHeader(http.StatusMethodNotAllowed)
 		errHandler(w, r, &err)
