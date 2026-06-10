@@ -6,13 +6,14 @@ import (
 	"strings"
 )
 
+// function to load files
 func GetBanner(input string, num int) (string, error) {
 	file, err := os.Open(input)
 	if err != nil {
 		return "", err
 	}
 	defer file.Close()
-
+	//create a new scanner to read content of the file
 	scanner := bufio.NewScanner(file)
 	linenum := 0
 	text := ""
@@ -27,6 +28,8 @@ func GetBanner(input string, num int) (string, error) {
 	}
 	return text, nil
 }
+
+// fuction to generate the asciiart
 func GenerateArt(input, filename string) (string, error) {
 	banner := "banners/" + filename + ".txt"
 	var result strings.Builder
@@ -34,7 +37,7 @@ func GenerateArt(input, filename string) (string, error) {
 	for _, word := range arg {
 		for i := range 8 {
 			for _, runes := range word {
-				//start := (int(rune)-32)*9 + 1
+				//called the getbanner function help generate the art.
 				asciiline, err := GetBanner(banner, 1+int(runes-' ')*9+i)
 				if err != nil {
 					return "", err
