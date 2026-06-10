@@ -4,29 +4,67 @@ import (
 	asciiart "ascii-art-web/source/ascii-art"
 	"html/template"
 	"net/http"
+	"strings"
 )
+
+type ErrorPageMsg struct {
+	ErrorCode string
+	ErrorMsg  string
+}
 
 type ResultPage struct {
 	Result string
 }
 
-var maintemp = template.Must(template.ParseFiles("templates/index.html"))
+// template to parse to all the functions
+var allhandletemp = template.Must(template.ParseFiles("templates/index.html"))
 
-func MainHandler(w http.ResponseWriter, r *http.Request) {
-	if r.URL.Path != "/" {
-		http.NotFound(w, r)
-		return
-	}
-
-	err := maintemp.Execute(w, nil)
-	if err != nil {
-		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
-		return
-	}
+// function for error  handler
+func errorHandler(w http.ResponseWriter, r *http.Request, err *ErrorPageMsg) {
+	allhandletemp.Execute(w, err)
 }
 
+// function to handle the main function.
+func MainHandler(w http.ResponseWriter, r *http.Request) {
+	//validating the path request
+	if r.URL.Path != "/" {
+		err := ErrorPageMsg{ErrorCode: "404", ErrorMsg: "PATH NOT FOUND"}
+		w.WriteHeader(http.StatusNotFound)
+		errorHandler(w, r, &err)
+		return
+	}
+	// checking for request method
+	if r.Method != "GET" {
+		err := ErrorPageMsg{ErrorCode: "405", ErrorMsg: "METHOD NOT ALLOWED"}
+		w.WriteHeader(http.StatusMethodNotAllowed)
+		errorHandler(w, r, &err)
+		return
+	}
+	allhandletemp.Execute(w, nil)
+}
+
+// function to handle the result paga
 func ResultHandler(w http.ResponseWriter, r *http.Request) {
+	// validating the parse form
+	err := r.ParseForm()
+	if err != nil {
+		err := ErrorPageMsg{ErrorCode: "500", ErrorMsg: "INTERNAL SERVER ERROR"}
+		w.WriteHeader(http.StatusInternalServerError)
+		errorHandler(w, r, &err)
+		return
+	}
+	// checking the input
 	input := r.PostFormValue("input-text")
+	checkedinput := strings.ReplaceAll(input, "/n", "")
+	for _, char := range checkedinput {
+		if char < 32 || char > 126 {
+			err := ErrorPageMsg{ErrorCode: "400", ErrorMsg: "INVALID INPUT"}
+			w.WriteHeader(http.StatusNotAcceptable)
+			errorHandler(w, r, &err)
+			return
+		}
+	}
+	//validating the banners
 	banner := r.PostFormValue("banner")
 	if input == "" {
 		http.Error(w, "Bad Request: Please enter text input", http.StatusBadRequest)

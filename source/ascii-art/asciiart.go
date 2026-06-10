@@ -33,9 +33,9 @@ func GenerateArt(input, filename string) (string, error) {
 	arg := strings.Split(input, "\n")
 	for _, word := range arg {
 		for i := range 8 {
-			for _, rune := range word {
-				start := (int(rune)-32)*9 + 1
-				asciiline, err := GetBanner(banner, start+i)
+			for _, runes := range word {
+				//start := (int(rune)-32)*9 + 1
+				asciiline, err := GetBanner(banner, 1+int(runes-' ')*9+i)
 				if err != nil {
 					return "", err
 				}
@@ -44,5 +44,6 @@ func GenerateArt(input, filename string) (string, error) {
 			result.WriteString("\n")
 		}
 	}
+
 	return result.String(), nil
 }
