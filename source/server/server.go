@@ -1,99 +1,47 @@
 package server
 
 import (
-	"ascii-art-web/source/ascii-art"
+	asciiart "ascii-art-web/source/ascii-art"
 	"html/template"
 	"net/http"
-	"strings"
 )
 
-//struct that holds the error data
-
-type ErrorPageMsg struct {
-	errorCode string
-	errorMsg  string
+type ResultPage struct {
+	Result string
 }
 
-// struct for the result data
-type resPageData struct {
-	str  string
-	font string
-	res  string
-}
+var maintemp = template.Must(template.ParseFiles("templates/index.html"))
 
-// func that render the error page
-func errHandler(w http.ResponseWriter, r *http.Request, err *ErrorPageMsg) {
-	errTmp := template.Must(template.ParseFiles("templates/error.html"))
-	errTmp.Execute(w, err)
-}
-
-// function to validate the main
 func MainHandler(w http.ResponseWriter, r *http.Request) {
-	// check for the path request
 	if r.URL.Path != "/" {
-		err := ErrorPageMsg{errorCode: "404", errorMsg: "PAGE NOT FOUND"}
-		w.WriteHeader(http.StatusFound)
-		errHandler(w, r, &err)
+		http.NotFound(w, r)
 		return
 	}
-	if r.Method != "GET" {
-		err := ErrorPageMsg{errorCode: "405", errorMsg: "METHOD NOT ALLOWED"}
-		w.WriteHeader(http.StatusMethodNotAllowed)
-		errHandler(w, r, &err)
-		return
-	}
-	//validating the parsing of the main page
-	main, err := template.ParseFiles("templates/index.html")
+
+	err := maintemp.Execute(w, nil)
 	if err != nil {
-		err := ErrorPageMsg{errorCode: "500", errorMsg: "INTERNAL SERVER ERROR"}
-		w.WriteHeader(http.StatusMethodNotAllowed)
-		errHandler(w, r, &err)
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 		return
 	}
-	mainTmp := template.Must(main, nil)
-	mainTmp.Execute(w, nil)
 }
 
-// function for reshandler
-func ResHandler(w http.ResponseWriter, r *http.Request) {
-	// checking for parsing of the form
-	err := r.ParseForm()
-	if err != nil {
-		err := ErrorPageMsg{errorCode: "500", errorMsg: "INTERNAL SERVER ERROR"}
-		w.WriteHeader(http.StatusInternalServerError)
-		errHandler(w, r, &err)
+func ResultHandler(w http.ResponseWriter, r *http.Request) {
+	input := r.PostFormValue("input-text")
+	banner := r.PostFormValue("banner")
+	if input == "" {
+		http.Error(w, "Bad Request: Please enter text input", http.StatusBadRequest)
 		return
 	}
-	// validating input
-	input := r.PostFormValue("txt-input")
-	validatestr := strings.ReplaceAll(input, "\r\n", "")
-
-	for _, letts := range validatestr {
-		if letts < 32 || letts > 126 {
-			err := ErrorPageMsg{errorCode: "400", errorMsg: "INVALID INPUT"}
-			w.WriteHeader(http.StatusNotAcceptable)
-			errHandler(w, r, &err)
-			return
-		}
-	}
-	// validating for banners
-	banner := r.PostFormValue("banners")
-
-	if banner != "standard" && banner != "shadow" && banner != "thinkertoy" {
-		err := ErrorPageMsg{errorCode: "404", errorMsg: "BANNER NOT FOUND"}
-		w.WriteHeader(http.StatusNotFound)
-		errHandler(w, r, &err)
+	ascii, err := asciiart.GenerateArt(input, banner)
+	if err != nil {
+		http.Error(w, "Server Internal Error", http.StatusInternalServerError)
 		return
 	}
-	// validatin asciiart functions
-	ascii, err := ascii.GenerateArt(input, banner)
-	if err != nil {
-		err := ErrorPageMsg{errorCode: "500", errorMsg: "INTERNAL SERVER ERROR"}
-		w.WriteHeader(http.StatusInternalServerError)
-		errHandler(w, r, &err)
-	}
-	resTmp := template.Must(template.ParseFiles("templates/asciiart.html"))
-	output := resPageData{str: input, font: banner, res: ascii}
-	resTmp.Execute(w, output)
 
+	output := ResultPage{Result: ascii}
+	err = maintemp.Execute(w, output)
+	if err != nil {
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
 }

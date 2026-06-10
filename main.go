@@ -10,12 +10,12 @@ import (
 func main() {
 	fmt.Println("server is running on a;8080\n Press ctl+c to stop the server.")
 	//created a new servemux
-	mux := http.NewServeMux()
+	//mux := http.NewServeMux()
 
-	mux.HandleFunc("/", server.MainHandler)
-	mux.HandleFunc("/ascii-art", server.ResHandler)
+	http.HandleFunc("/", server.MainHandler)
+	http.HandleFunc("/ascii-art", server.ResultHandler)
 
-	err := http.ListenAndServe(":8080", mux)
+	err := http.ListenAndServe(":8080", nil)
 	//check when server fails to start
 	if err != nil {
 		log.Fatalf("Server failds to start: %v", err)

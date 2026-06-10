@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ascii Display</title>
-    <h1><i>Ascii-art web</i></h1>
+    <h1><i>Go Ascii-art</i></h1>
 </head>
 <body>
     <form action="/ascii-art" method="POST">
         <div>
-            <label for="input-text" class="form-lable">Convert text to ascii-art</label><br><br>
-            <textarea type="text"  name="Enter-text" class="form-control" id="input-text" style="height: 200px; width: 700px; text-align: left; font-size: 30px;" placeholder="Enter text" required></textarea>
+            <label for="input-text" class="form-lable">Enter a text</label><br>
+            <textarea type="text"  name="input-text" class="form-control" id="input-text" rows="5" cols="30" placeholder="Write a text" required></textarea>
         </div>
         
         <div>
@@ -23,7 +23,7 @@
         </div>
     </form>
     <div>
-        <pre>{{ .ascii }}</pre>
+        <pre> {{ .Result }}</pre>
     </div>
 </body>
 </html>
