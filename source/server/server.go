@@ -66,18 +66,23 @@ func ResultHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	//validating the banners
 	banner := r.PostFormValue("banner")
-	if input == "" {
-		http.Error(w, "Bad Request: Please enter text input", http.StatusBadRequest)
+	if banner != "standard" && banner != "shadow" && banner != "thinkertoy" {
+		err := ErrorPageMsg{ErrorCode: "400", ErrorMsg: "BANNER NOT FOUND"}
+		w.WriteHeader(http.StatusNotFound)
+		errorHandler(w, r, &err)
 		return
 	}
+	//call the generated asciiart function
 	ascii, err := asciiart.GenerateArt(input, banner)
 	if err != nil {
-		http.Error(w, "Server Internal Error", http.StatusInternalServerError)
+		err := ErrorPageMsg{ErrorCode: "404", ErrorMsg: "SERVER INTERNAL ERROR"}
+		w.WriteHeader(http.StatusInternalServerError)
+		errorHandler(w, r, &err)
 		return
 	}
 
 	output := ResultPage{Result: ascii}
-	err = maintemp.Execute(w, output)
+	err = allhandletemp.Execute(w, output)
 	if err != nil {
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 		return
