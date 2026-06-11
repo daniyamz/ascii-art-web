@@ -21,7 +21,8 @@ var allhandletemp = template.Must(template.ParseFiles("templates/index.html"))
 
 // function for error  handler
 func errorHandler(w http.ResponseWriter, r *http.Request, err *ErrorPageMsg) {
-	allhandletemp.Execute(w, err)
+	errtemp := template.Must(template.ParseFiles("templates/error.html"))
+	errtemp.Execute(w, err)
 }
 
 // function to handle the main function.
@@ -55,7 +56,7 @@ func ResultHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	// checking the input
 	input := r.PostFormValue("input-text")
-	checkedinput := strings.ReplaceAll(input, "/n", "")
+	checkedinput := strings.ReplaceAll(input, "\r\n", "")
 	for _, char := range checkedinput {
 		if char < 32 || char > 126 {
 			err := ErrorPageMsg{ErrorCode: "400", ErrorMsg: "INVALID INPUT"}
@@ -82,9 +83,5 @@ func ResultHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	output := ResultPage{Result: ascii}
-	err = allhandletemp.Execute(w, output)
-	if err != nil {
-		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
-		return
-	}
+	allhandletemp.Execute(w, output)
 }
