@@ -8,22 +8,26 @@
 </head>
 <body>
     <form action="/ascii-art" method="POST">
-        <div>
+        <div class="enter-text">
+            <!--lable to enter text-->
             <label for="input-text" class="form-lable">Enter a text</label><br>
             <textarea type="text"  name="input-text" class="form-control" id="input-text" rows="5" cols="30" placeholder="Write a text" required></textarea>
         </div>
         
         <div>
+            <!--Banner selection-->
             <select class="form-select" name="banner">
                 <option value="standard">standard</option>
                 <option value="shadow">shadow</option>
                 <option value="thinkertoy">thinkertoy</option>
+                <option value="font">font</option>
             </select>
             <button type="submit" style="font-family: Pacifico, 'Ubutun Medium', 'Ubutun',sans-serif,'Times New Rome';">Go</button>
         </div>
     </form>
+    <!--Display the ascii characters as inputed in the textarea from class enter-text-->
     <div>
-        <pre>{{ .Result}}</pre>
+        <pre>{{ .Result }} </pre>
     </div>
 </body>
 </html>
