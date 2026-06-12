@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+form{
+    margin: 0 auto;
+    width: 40%;
+    padding: 1em;
+    border: 3px solid #ccc;
+    border-radius: 1em;
+    background-color: white;
+}
+
+/* Uniform text field size */
+input,
+textarea{
+    font: 1em sans-serif;
+    width: 100%;
+    padding: 0.5em;
+    margin: 0.5em 0;
+    border: 1px solid #999;
+    border-radius: 0.5em;
+    box-sizing: border-box;
+}
+/* Align multiline  text field with their labels */
+textarea{
+    vertical-align: top;
+    height: 5em;
+}
+button{
+    font-family: 'Times New Roman', Times, serif;
+    border: 1px solid #999;
+    width: 100%;
+    padding: 0.5em;
+    box-sizing: border-box;
+}
