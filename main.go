@@ -12,10 +12,12 @@ func main() {
 	//created a new servemux
 	mux := http.NewServeMux()
 
+	mux.Handle("/static/", http.StripPrefix("/static", http.FileServer(http.Dir("./static"))))
+
 	mux.HandleFunc("/", server.MainHandler)
 	mux.HandleFunc("/ascii-art", server.ResultHandler)
 
-	err := http.ListenAndServe(":8080", nil)
+	err := http.ListenAndServe(":8080", mux)
 	//check when server fails to start
 	if err != nil {
 		log.Fatalf("Server failds to start: %v", err)
