@@ -36,6 +36,7 @@ button{
     padding: 0.5em;
     box-sizing: border-box;
 }
+/*uniform h1 field */
 h1{
     font-family: 'Times New Roman', Times, serif;
     font-size: large;
@@ -46,4 +47,15 @@ h1{
 pre{
     text-align: center;
     padding: auto;
+}
+/* unforming the select section*/
+select{
+    padding: 0.5em;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #999;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: large;
+    font-style: italic;
+
 }
