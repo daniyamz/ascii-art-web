@@ -36,3 +36,14 @@ button{
     padding: 0.5em;
     box-sizing: border-box;
 }
+h1{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: large;
+    font-style: italic;
+    padding: auto;
+    text-align: center;
+}
+pre{
+    text-align: center;
+    padding: auto;
+}
