@@ -3,7 +3,6 @@
     padding: 0;
     box-sizing: border-box;
 }
-
 form{
     margin: 0 auto;
     width: 40%;
@@ -12,7 +11,9 @@ form{
     border-radius: 1em;
     background-color: white;
 }
-
+ascii-result{
+    border: 2px solid #999;
+}
 /* Uniform text field size */
 input,
 textarea{
@@ -47,6 +48,7 @@ h1{
 pre{
     text-align: center;
     padding: auto;
+    border-radius: 1em;
 }
 /* unforming the select section*/
 select{
@@ -86,4 +88,10 @@ nav{
 }
 a {
     text-decoration: none;
+}
+.res{
+    border: 3px;
+    border-radius: 20px;
+    overflow: auto;
+    box-shadow: 0 4px 8px(0, 0, 0,.274);
 }
