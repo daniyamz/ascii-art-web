@@ -59,3 +59,31 @@ select{
     font-style: italic;
 
 }
+nav{
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content:space-between;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+.ascii-go{
+    padding: auto;
+    margin: auto;
+    width: 100%;
+    padding-right: var(--bs-gutter-x 0.75rem);
+    padding-left: var(--bs-gutter-x 0.75rem);
+}
+.go-art{
+    font-size: 1.25rem;
+    display: inline-block;
+    margin-right: 1rem;
+    white-space: nowrap;
+    padding-top: 0.3125rem;
+    padding-bottom: 0.1325rem;
+    line-height: inherit;
+}
+a {
+    text-decoration: none;
+}
