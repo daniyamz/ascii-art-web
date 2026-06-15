@@ -5,9 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ascii Display</title>
     <link rel="stylesheet" href="/static/style.css">
-    <h1><i>Go Ascii-art</i></h1>
 </head>
 <body>
+    <nav>
+        <div class="ascii-go">
+            <a class="go-art" href="/">Go Back</a>
+        </div>
+    </nav>
+    <div class="d-flex justify-content-center">
+        <h1>ASCII Generator</h1>
+    </div>
     <form action="/ascii-art" method="POST">
         <div class="enter-text">
             <!--lable to enter text-->
@@ -15,15 +22,14 @@
             <textarea type="text"  name="input-text" class="form-control" id="input-text" rows="5" cols="30" placeholder="Write a text" required></textarea>
         </div>
         
-        <div>
+        <div class="input-group mb-3">
             <!--Banner selection-->
             <select class="form-select" name="banner">
                 <option value="standard">standard</option>
                 <option value="shadow">shadow</option>
                 <option value="thinkertoy">thinkertoy</option>
-                <option value="font">font</option>
             </select><br><br>
-            <button type="submit" style="font-family: Pacifico, 'Ubutun Medium', 'Ubutun',sans-serif,'Times New Rome';">Go</button>
+            <button type="submit">Go</button>
         </div>
     </form>
     <!--Display the ascii characters as inputed in the textarea from class enter-text-->
