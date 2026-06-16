@@ -16,9 +16,18 @@ Terungwa Terkimbi
 2. Clone this repository to your local machine
 3. Navigate to the project directory in your terminal.
 4. Use this command "go run ." to run the application.
+5. Use this link `http://localhost:8080/` on your browser to access the application.
 
 ## Web Interface
 
 1. Enter text in the enter text field.
 2. Select banner style from the drop-down sector.
 3. Click on the Go button to generate the ASCII art.
+
+## Implementation
+1. **Input phase:** The user enters an input and is read via tha HTML form.
+2. **Select Banner:** The style of the banner is been determined depending on the user selection.
+3. **Input conversion:** The entered  input is then converted to ascii characters depending on the selected banner.
+4. **Result Rendering:** The ASCII character(s) are displayed on the webpage.
+
+## Structure
