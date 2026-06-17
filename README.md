@@ -34,3 +34,4 @@ Terungwa Terkimbi
 1. **main.go:** This is the funcion that run the application.
 2. **Templates:** This folder contains all the html files.
 3. **Source:** This file houses the server source code and the ascii-art source code.
+4. **Banners:** The banners folder contains all the banner file in for selection.
