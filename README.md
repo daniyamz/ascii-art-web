@@ -31,3 +31,6 @@ Terungwa Terkimbi
 4. **Result Rendering:** The ASCII character(s) are displayed on the webpage.
 
 ## Structure
+1. **main.go:** This is the funcion that run the application.
+2. **Templates:** This folder contains all the html files.
+3. **Source:** This file houses the server source code and the ascii-art source code.
