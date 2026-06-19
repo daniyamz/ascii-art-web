@@ -35,7 +35,7 @@ func MainHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	// checking for request method
-	if r.Method != "GET" {
+	if r.Method != http.MethodGet {
 		err := ErrorPageMsg{ErrorCode: "405", ErrorMsg: "METHOD NOT ALLOWED"}
 		w.WriteHeader(http.StatusMethodNotAllowed)
 		errorHandler(w, r, &err)
