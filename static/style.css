@@ -11,6 +11,9 @@ form{
     border-radius: 1em;
     background-color: white;
 }
+body{
+    background-image:url("pix.jpg")
+}
 ascii-result{
     border: 2px solid #999;
 }
@@ -46,9 +49,14 @@ h1{
     text-align: center;
 }
 pre{
+    margin: 0 auto;
     text-align: center;
-    padding: auto;
+    padding: 0em;
     border-radius: 1em;
+    background-color: white;
+    width: 40%;
+    border: 3px solid #ccc;
+    margin-top: 5%;
 }
 /* unforming the select section*/
 select{
