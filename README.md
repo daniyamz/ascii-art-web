@@ -30,8 +30,18 @@ Terungwa Terkimbi
 3. **Input conversion:** The entered  input is then converted to ascii characters depending on the selected banner.
 4. **Result Rendering:** The ASCII character(s) are displayed on the webpage.
 
-## Structure
+## File Structure
 1. **main.go:** This is the funcion that run the application.
-2. **Templates:** This folder contains all the html files.
-3. **Source:** This file houses the server source code and the ascii-art source code.
-4. **Banners:** The banners folder contains all the banner file in for selection.
+2. **Templates/:** This folder contains all the html files.
+3. **Source/:** This folder houses the server source code and the ascii-art source code.
+4. **Banners/:** The banners folder contains all the banner file in for selection.
+
+## Http Endpoint ##
+1. **GET /**:Sends HTML response,the main page
+    - **Status Code:** 200 OK
+2. **POST /ascii-art** : that sends data to the Go server
+    - **Status Code**
+        - 200 OK, if everthing went without errors
+        - 404 Not Found, if nothing is found, for example templates or banners.
+        - 400 Bad Request, for incorrect requests.
+        - 500 Internal Server Error, for unhandled errors.
