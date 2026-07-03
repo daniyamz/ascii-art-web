@@ -13,6 +13,8 @@ type ErrorPageMsg struct {
 }
 
 type ResultPage struct {
+	Text   string
+	Banner string
 	Result string
 }
 
@@ -46,6 +48,19 @@ func MainHandler(w http.ResponseWriter, r *http.Request) {
 
 // function to handle the result paga
 func ResultHandler(w http.ResponseWriter, r *http.Request) {
+	// validating path request
+	if r.URL.Path != "/ascii-art" {
+		err := ErrorPageMsg{ErrorCode: "400", ErrorMsg: "PATH NOT FOUND"}
+		w.WriteHeader(http.StatusNotFound)
+		errorHandler(w, r, &err)
+		return
+	}
+	//validating request method
+	if r.Method != http.MethodPost {
+		err := ErrorPageMsg{ErrorCode: "405", ErrorMsg: "METHOD NOT FOUND"}
+		w.WriteHeader(http.StatusMethodNotAllowed)
+		errorHandler(w, r, &err)
+	}
 	// validating the parse form
 	err := r.ParseForm()
 	if err != nil {
@@ -82,6 +97,6 @@ func ResultHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	output := ResultPage{Result: ascii}
-	allhandletemp.Execute(w, output)
+	output := ResultPage{Text: input, Banner: banner, Result: ascii}
+	err = allhandletemp.Execute(w, output)
 }
