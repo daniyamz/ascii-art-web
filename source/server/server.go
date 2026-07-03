@@ -50,7 +50,7 @@ func MainHandler(w http.ResponseWriter, r *http.Request) {
 func ResultHandler(w http.ResponseWriter, r *http.Request) {
 	// validating path request
 	if r.URL.Path != "/ascii-art" {
-		err := ErrorPageMsg{ErrorCode: "400", ErrorMsg: "PATH NOT FOUND"}
+		err := ErrorPageMsg{ErrorCode: "405", ErrorMsg: "PATH NOT FOUND"}
 		w.WriteHeader(http.StatusNotFound)
 		errorHandler(w, r, &err)
 		return
@@ -75,7 +75,7 @@ func ResultHandler(w http.ResponseWriter, r *http.Request) {
 	for _, char := range checkedinput {
 		if char < 32 || char > 126 {
 			err := ErrorPageMsg{ErrorCode: "400", ErrorMsg: "INVALID INPUT"}
-			w.WriteHeader(http.StatusNotAcceptable)
+			w.WriteHeader(http.StatusBadRequest)
 			errorHandler(w, r, &err)
 			return
 		}
@@ -83,7 +83,7 @@ func ResultHandler(w http.ResponseWriter, r *http.Request) {
 	//validating the banners
 	banner := r.PostFormValue("banner")
 	if banner != "standard" && banner != "shadow" && banner != "thinkertoy" {
-		err := ErrorPageMsg{ErrorCode: "400", ErrorMsg: "BANNER NOT FOUND"}
+		err := ErrorPageMsg{ErrorCode: "404", ErrorMsg: "BANNER NOT FOUND"}
 		w.WriteHeader(http.StatusNotFound)
 		errorHandler(w, r, &err)
 		return
@@ -91,7 +91,7 @@ func ResultHandler(w http.ResponseWriter, r *http.Request) {
 	//call the generated asciiart function
 	ascii, err := asciiart.GenerateArt(input, banner)
 	if err != nil {
-		err := ErrorPageMsg{ErrorCode: "404", ErrorMsg: "SERVER INTERNAL ERROR"}
+		err := ErrorPageMsg{ErrorCode: "500", ErrorMsg: "SERVER INTERNAL ERROR"}
 		w.WriteHeader(http.StatusInternalServerError)
 		errorHandler(w, r, &err)
 		return
