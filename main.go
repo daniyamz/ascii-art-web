@@ -17,7 +17,7 @@ func main() {
 	mux.HandleFunc("/", server.MainHandler)
 	mux.HandleFunc("/ascii-art", server.ResultHandler)
 
-	err := http.ListenAndServe(":8080", mux)
+	err := http.ListenAndServe(":8000", mux)
 	//check when server fails to start
 	if err != nil {
 		log.Fatalf("Server failds to start: %v", err)
