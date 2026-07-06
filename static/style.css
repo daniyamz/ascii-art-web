@@ -13,12 +13,7 @@ form{
     margin-right: auto;
     margin-top: 5%;
 }
-body{
-    background-image:url("pix.jpg")
-}
-ascii-result{
-    border: 2px solid #999;
-}
+
 /* Uniform text field size */
 input,
 textarea{
@@ -51,15 +46,11 @@ h1{
     text-align: center;
 }
 pre{
-    margin: 0 auto;
-    text-align: center;
-    padding: 0em;
-    border-radius: 1em;
-    background-color: white;
-    width: 40%;
-    border: 3px solid #ccc;
-    margin-top: 5%;
-    overflow: break-word;
+    font-weight: bolder;
+    min-width: 500px;
+    margin: 10px 20px;
+    text-align: start;
+    margin: auto;
 }
 /* unforming the select section*/
 select{
@@ -100,9 +91,17 @@ nav{
 a {
     text-decoration: none;
 }
-.res{
-    border: 3px;
+#res{
+    margin-top: auto;
+    min-height: 160px;
+    width: fit-content;
+    min-width: 50%;
+    max-width: 100%;
+    margin-bottom: 10px;
+    border: 3px dotted var(--primary-color);
     border-radius: 20px;
+    color: black;
     overflow: auto;
-    box-shadow: 0 4px 8px(0, 0, 0,.274);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.274);
+    text-shadow: 5px 5px 7px #fff;
 }
