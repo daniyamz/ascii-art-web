@@ -21,8 +21,9 @@ form{
     border-radius: 1em;
     margin-right: auto;
     margin-top: 5%;
-    border: 3px solid var(--primary-color);
+    border: 3px solid #ccc;
     box-shadow: 0 4px 8px rgb(128, 14, 14, 0.1);
+    border-color: beige;
 }
 
 /* Uniform text field size */
@@ -105,6 +106,7 @@ nav{
 }
 a {
     text-decoration: none;
+    color: bisque;
 }
 #res{
     margin:  auto;
