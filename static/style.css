@@ -44,6 +44,11 @@ textarea{
 textarea{
     vertical-align: top;
     height: 5em;
+    background-color: #999;
+    border-radius: 0.5em;
+    font-size: large;
+    font-weight: bold;
+    font-size: large;
 }
 button{
     font-family: 'Times New Roman', Times, serif;
@@ -51,6 +56,10 @@ button{
     width: 100%;
     padding: 0.5em;
     box-sizing: border-box;
+    border-radius: 0.5em;
+    font-weight: bold;
+    font-size: large;
+    font-style: italic;
 }
 /*uniform h1 field */
 h1{
