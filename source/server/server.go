@@ -2,6 +2,7 @@ package server
 
 import (
 	asciiart "ascii-art-web/source/ascii-art"
+	"fmt"
 	"html/template"
 	"net/http"
 	"strings"
@@ -96,7 +97,15 @@ func ResultHandler(w http.ResponseWriter, r *http.Request) {
 		errorHandler(w, r, &err)
 		return
 	}
-
 	output := ResultPage{Text: input, Banner: banner, Result: ascii}
-	err = allhandletemp.Execute(w, output)
+	check := r.Form.Has("Download")
+	if check {
+		filename := "ascii" + r.FormValue("filetype")
+		w.Header().Set("Content-Disposition", "attachment; filename="+filename)
+		w.Header().Set("Content-Length", fmt.Sprint(len(output.Result)))
+		w.Header().Set("Content-Type", "text/plain")
+		w.Write([]byte(output.Result))
+	} else {
+		err = allhandletemp.Execute(w, output)
+	}
 }
