@@ -19,11 +19,11 @@ form{
     width: 40%;
     padding: 1em;
     border-radius: 1em;
-    margin-right: auto;
     margin-top: 5%;
     border: 3px solid #ccc;
     box-shadow: 0 4px 8px rgb(128, 14, 14, 0.1);
     border-color: beige;
+    
 }
 
 /* Uniform text field size */
@@ -94,7 +94,8 @@ select{
     border-radius: 0.5em;
     font-weight: bold;
     color: black;
-
+    text-align: center;
+    cursor: pointer;
 }
 select option{
     background-color: #999;
@@ -140,4 +141,28 @@ a {
     width: 40%;
     margin-top: 20px;
     overflow: auto;
+}
+input[type ="submit"]{
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background-color: #999;
+    font-size: large;
+    font-weight: bold;
+    font-style: italic;
+    padding: 10px, 25px;
+    border: 0px;
+    color: black;
+    width: 30%;
+    justify-content: center;
+}
+input[type="submit"]:hover{
+    bottom: 1px 1px 8px var(--primary-color);
+    cursor: pointer;
+}
+.input-gr{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 200px;
+
 }
