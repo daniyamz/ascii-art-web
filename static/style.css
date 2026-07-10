@@ -49,6 +49,7 @@ textarea{
     font-size: large;
     font-weight: bold;
     font-size: large;
+    color: black;
 }
 button{
     font-family: 'Times New Roman', Times, serif;
@@ -60,6 +61,7 @@ button{
     font-weight: bold;
     font-size: large;
     font-style: italic;
+    background-color: #999;
 }
 /*uniform h1 field */
 h1{
@@ -68,6 +70,8 @@ h1{
     font-style: italic;
     padding: auto;
     text-align: center;
+    font-weight: bold;
+    color: black;
 }
 pre{
     font-weight: bolder;
@@ -86,7 +90,17 @@ select{
     font-family: 'Times New Roman', Times, serif;
     font-size: large;
     font-style: italic;
+    background-color: #999;
+    border-radius: 0.5em;
+    font-weight: bold;
+    color: black;
 
+}
+select option{
+    background-color: #999;
+    font-weight: bold;
+    font-style: italic;
+    color: black;
 }
 nav{
     position: relative;
