@@ -10,12 +10,10 @@
     <form action="/ascii-art" method="POST">
         <div class="d-flex justify-content-center">
         <a href="/">
-            <h1>ASCII Generator</h1>
+            <h1>ASCII-ART GENERATOR</h1>
         </a>
         </div>
         <div class="enter-text">
-            <!--lable to enter text-->
-            <label for="input-text" class="form-lable"></label><br>
             <textarea type="text"  name="input-text" class="form-control" id="input-text" rows="5" cols="30" placeholder="Ente text to generate" required>{{.Text}}</textarea>
         </div>
         
@@ -26,7 +24,16 @@
                 <option value="shadow">shadow</option>
                 <option value="thinkertoy">thinkertoy</option>
             </select><br><br>
-            <button type="submit">Generate</button>
+            <select name="filetype" id="filetype">
+                <option value=".txt">Text (.txt)</option>
+                <option value=".md">Mark down (.md)</option>
+                <option value=".rtf">Rich text (.rtf)</option>
+                <option>Comma separated values (.csv)</option>
+            </select>
+            <div>
+                <input type="submit" name="Download" value="Download">
+                <input type="submit" value="Generate">
+            </div>
         </div>
     </form>
     <!--Display the ascii characters as inputed in the textarea from class enter-text-->
@@ -35,5 +42,6 @@
         <pre>{{.Result}}</pre>
     </div>
     {{end}}
+    <a href="/about">About</a>
 </body>
 </html>
