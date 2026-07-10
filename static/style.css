@@ -27,7 +27,6 @@ form{
 }
 
 /* Uniform text field size */
-input,
 textarea{
     font-size: large;
     font: 1em sans-serif;
@@ -50,18 +49,6 @@ textarea{
     font-weight: bold;
     font-size: large;
     color: black;
-}
-button{
-    font-family: 'Times New Roman', Times, serif;
-    border: 1px solid #999;
-    width: 100%;
-    padding: 0.5em;
-    box-sizing: border-box;
-    border-radius: 0.5em;
-    font-weight: bold;
-    font-size: large;
-    font-style: italic;
-    background-color: #999;
 }
 /*uniform h1 field */
 h1{
@@ -97,21 +84,6 @@ select{
     text-align: center;
     cursor: pointer;
 }
-select option{
-    background-color: #999;
-    font-weight: bold;
-    font-style: italic;
-    color: black;
-}
-nav{
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content:space-between;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-}
 .ascii-go{
     padding: auto;
     margin: auto;
@@ -143,7 +115,9 @@ a {
     overflow: auto;
 }
 input[type ="submit"]{
+    margin-top: 10px;
     margin-bottom: 10px;
+    margin-right: 0%;
     border-radius: 10px;
     background-color: #999;
     font-size: large;
@@ -153,16 +127,15 @@ input[type ="submit"]{
     border: 0px;
     color: black;
     width: 30%;
-    justify-content: center;
 }
 input[type="submit"]:hover{
     bottom: 1px 1px 8px var(--primary-color);
     cursor: pointer;
 }
-.input-gr{
+.input-gp{
     display: flex;
     justify-content: center;
-    width: 100%;
-    margin: 200px;
-
+    align-items: center;
+    margin: auto;
+    gap: 10px;
 }
