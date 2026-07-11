@@ -22,6 +22,11 @@ type ResultPage struct {
 // template to parse to all the functions
 var allhandletemp = template.Must(template.ParseFiles("templates/index.html"))
 
+func AboutHandler(w http.ResponseWriter, r *http.Request) {
+	abut := template.Must(template.ParseFiles("templates/about.html"))
+	abut.Execute(w, nil)
+}
+
 // function for error  handler
 func errorHandler(w http.ResponseWriter, r *http.Request, err *ErrorPageMsg) {
 	errtemp := template.Must(template.ParseFiles("templates/error.html"))
