@@ -16,7 +16,7 @@ func main() {
 
 	mux.HandleFunc("/", server.MainHandler)
 	mux.HandleFunc("/ascii-art", server.ResultHandler)
-
+	mux.HandleFunc("/about", server.AboutHandler)
 	err := http.ListenAndServe(":8000", mux)
 	//check when server fails to start
 	if err != nil {
