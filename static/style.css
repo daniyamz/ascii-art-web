@@ -58,7 +58,7 @@ h1{
     padding: auto;
     text-align: center;
     font-weight: bold;
-    color: black;
+    color: #999;
 }
 pre{
     font-weight: bolder;
@@ -138,4 +138,13 @@ input[type="submit"]:hover{
     align-items: center;
     margin: auto;
     gap: 10px;
+}
+.about{
+    color: #999;
+    display: flex;
+    justify-self: center;
+    margin-top: 10px;
+    font-size: large;
+    font-weight: bold;
+    font-style: italic;
 }
